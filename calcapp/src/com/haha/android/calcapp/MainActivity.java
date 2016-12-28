@@ -1,4 +1,4 @@
-package com.haha.jisuanqi;
+package com.haha.android.calcapp;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.haha.android.calcapp.R;
 
 public class MainActivity extends Activity implements OnClickListener {
 
