@@ -109,39 +109,39 @@ public class MainActivity extends Activity implements OnClickListener {
 			et_xianshi.append("-");
 			break;
 		case R.id.bt_cheng:
-			et_xianshi.append("×");
+			et_xianshi.append("脳");
 			break;
 		case R.id.bt_chu:
-			et_xianshi.append("÷");
+			et_xianshi.append("梅");
 			break;
 		case R.id.bt_dengyu:
 			String s1 = et_xianshi.getText().toString();
 			boolean jia = s1.contains("+");
 			boolean jian = s1.contains("-");
-			boolean cheng = s1.contains("×");
-			boolean chu = s1.contains("÷");
+			boolean cheng = s1.contains("脳");
+			boolean chu = s1.contains("梅");
 			if ("".equals(s1)) {
-				Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!jia && !jian && !cheng && !chu) {
-				Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (s1.endsWith(".") || s1.endsWith("+") || s1.endsWith("-")
-					|| s1.endsWith("×") || s1.endsWith("÷")) {
-				Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT).show();
+					|| s1.endsWith("脳") || s1.endsWith("梅")) {
+				Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (jia) {
 				if (s1.indexOf("+") != s1.lastIndexOf("+")
 						|| s1.indexOf("+") < 1) {
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+					Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 							.show();
 					return;
 				}
 				if(jian||cheng||chu){
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+					Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 					.show();
 			return;
 				}
@@ -150,14 +150,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				String b = s1.substring(index + 1, s1.length());
 				if(a.contains(".")){
 					if(a.indexOf(".")!=a.lastIndexOf(".")||a.indexOf(".")==a.length()-1){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 						.show();
 				return;
 					}
 				}
 				if(b.contains(".")){
 					if(b.indexOf(".")!=b.lastIndexOf(".")||b.indexOf(".")==0){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 						.show();
 				return;
 					}
@@ -169,12 +169,12 @@ public class MainActivity extends Activity implements OnClickListener {
 			} else if (jian) {
 				if (s1.indexOf("-") != s1.lastIndexOf("-")
 						|| s1.indexOf("-") < 1) {
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+					Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 							.show();
 					return;
 				}
 				if(jia||cheng||chu){
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+					Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 					.show();
 			return;
 				}
@@ -183,14 +183,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				String b = s1.substring(index + 1, s1.length());
 				if(a.contains(".")){
 					if(a.indexOf(".")!=a.lastIndexOf(".")||a.indexOf(".")==a.length()-1){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 						.show();
 				return;
 					}
 				}
 				if(b.contains(".")){
 					if(b.indexOf(".")!=b.lastIndexOf(".")||b.indexOf(".")==0){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 						.show();
 				return;
 					}
@@ -201,30 +201,30 @@ public class MainActivity extends Activity implements OnClickListener {
 				et_xianshi.setText(s2);
 
 			}else if (cheng) {
-				if (s1.indexOf("×") != s1.lastIndexOf("×")
-						|| s1.indexOf("×") < 1) {
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+				if (s1.indexOf("脳") != s1.lastIndexOf("脳")
+						|| s1.indexOf("脳") < 1) {
+					Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 							.show();
 					return;
 				}
 				if(jia||jian||chu){
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+					Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 					.show();
 			return;
 				}
-				int index = s1.indexOf("×");
+				int index = s1.indexOf("脳");
 				String a = s1.substring(0, index);
 				String b = s1.substring(index + 1, s1.length());
 				if(a.contains(".")){
 					if(a.indexOf(".")!=a.lastIndexOf(".")||a.indexOf(".")==a.length()-1){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 						.show();
 				return;
 					}
 				}
 				if(b.contains(".")){
 					if(b.indexOf(".")!=b.lastIndexOf(".")||b.indexOf(".")==0){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 						.show();
 				return;
 					}
@@ -235,33 +235,34 @@ public class MainActivity extends Activity implements OnClickListener {
 				et_xianshi.setText(s2);
 
 			}else if (chu) {
-				if (s1.indexOf("÷") != s1.lastIndexOf("÷")
-						|| s1.indexOf("÷") < 1) {
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+				if (s1.indexOf("梅") != s1.lastIndexOf("梅")
+						|| s1.indexOf("梅") < 1) {
+					Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 							.show();
 					return;
 				}
 				if(jia||jian||cheng){
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+					Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 					.show();
 			return;
 				}
-				int index = s1.indexOf("÷");
+				int index = s1.indexOf("梅");
 				String a = s1.substring(0, index);
 				String b = s1.substring(index + 1, s1.length());
 				if(a.contains(".")){
 					if(a.indexOf(".")!=a.lastIndexOf(".")||a.indexOf(".")==a.length()-1){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 						.show();
 				return;
 					}
 				}
 				if(b.contains(".")){
 					if(b.indexOf(".")!=b.lastIndexOf(".")||b.indexOf(".")==0){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "浣犺緭鍏ョ殑杩愮畻鏍煎紡鏈夎", Toast.LENGTH_SHORT)
 						.show();
 				return;
 					}
+					
 				}
 				double x = Double.parseDouble(a);
 				double y = Double.parseDouble(b);
