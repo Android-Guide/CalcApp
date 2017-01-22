@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import net.saick.android.calcapp.R;
+import net.saick.android.calcapp.core.CalcAction;
+import net.saick.android.calcapp.core.CalcCore;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -65,12 +67,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.bt_num0:
 			et_xianshi.append("0");
+			CalcCore.input("0");
 			break;
 		case R.id.bt_num1:
 			et_xianshi.append("1");
+			CalcCore.input("1");
 			break;
 		case R.id.bt_num2:
 			et_xianshi.append("2");
+			CalcCore.input("2");
 			break;
 		case R.id.bt_num3:
 			et_xianshi.append("3");
@@ -105,6 +110,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.bt_jia:
 			et_xianshi.append("+");
+			String ret = CalcCore.calculate(CalcAction.PLUS);
+			System.out.println("test:" + ret);
+			et_xianshi.setText(ret);
 			break;
 		case R.id.bt_jian:
 			et_xianshi.append("-");
