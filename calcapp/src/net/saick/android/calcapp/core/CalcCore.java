@@ -3,6 +3,7 @@
  */
 package net.saick.android.calcapp.core;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 //enum CalcAction {
@@ -148,6 +149,41 @@ public class CalcCore {
 	 * @return 可显示的当前值
 	 */
 	public static String currentOutput() {
-		return Double.toString(CalcCore.getInstance().currentValue);
+		DecimalFormat decimalFormat = new DecimalFormat("###################.###########"); 
+		return decimalFormat.format(CalcCore.getInstance().currentValue);
 	}
+	
+	/**
+	 * 判断当前是否需要删除，如果不需要的话，显示 AC
+	 * @return 是否需要删除
+	 */
+	public static Boolean isNeedDelete() {
+		CalcCore calc = CalcCore.getInstance();
+		if (calc.currentValue != 0.0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 删除当前值
+	 */
+	public static String clear() {
+		CalcCore calc = CalcCore.getInstance();
+		calc.currentValue = 0.0;
+		return CalcCore.currentOutput();
+	}
+	
+	/**
+	 * 删除所有
+	 */
+	 public static String allclear() {
+		 CalcCore calc = CalcCore.getInstance();
+		 calc.currentValue = 0.0;
+		 calc.lastValue = 0.0;
+		 calc.lastAction = CalcAction.NONE;
+		 calc.history.clear();
+		 return CalcCore.currentOutput();
+	 }
 }
