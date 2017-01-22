@@ -4,5 +4,24 @@
     <string name="app_name">简易计算器3</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="bt_ac">AC</string>
+    <string name="bt_bfh">%</string>
+    <string name="bt_zf">＋/－</string>
+    <string name="bt_chu">÷</string>
+    <string name="bt_num7">7</string>
+    <string name="bt_num8">8</string>
+    <string name="bt_num9">9</string>
+    <string name="bt_cheng">×</string>
+    <string name="bt_num4">4</string>
+    <string name="bt_num5">5</string>
+    <string name="bt_num6">6</string>
+    <string name="bt_jian">－</string>
+    <string name="bt_num1">1</string>
+    <string name="bt_num2">2</string>
+    <string name="bt_num3">3</string>
+    <string name="bt_jia">＋</string>
+    <string name="bt_num0">0</string>
+    <string name="bt_dian">.</string>
+    <string name="bt_dengyu">＝</string>
 
 </resources>
