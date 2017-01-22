@@ -22,8 +22,17 @@ import java.util.ArrayList;
  *
  */
 public class CalcCore {
+	private CalcCore() {
+	}
+	
+	private static class CalcSingletonHolder {
+		private final static CalcCore instance = new CalcCore();
+	}
+	
 	// 计算前的值
 	private double lastValue = 0.0;
+	// 输入编辑值
+	private double inputValue = 0.0;
 	// 当前显示的值（计算结果）
 	private double currentValue = 0.0;
 	// 当前操作
@@ -31,9 +40,6 @@ public class CalcCore {
 	// TODO: 用来记录操作记录
 	private ArrayList history;
 	
-	private CalcCore() {
-	}
-
 	/**
 	 * 根据操作计算两个数的结果，如果操作不可计算，返回第二个数
 	 * @param v1
@@ -81,9 +87,7 @@ public class CalcCore {
 		return result;
 	}
 
-	private static class CalcSingletonHolder {
-		private final static CalcCore instance = new CalcCore();
-	}
+	
 	
 	/**
 	 * 单例
@@ -101,7 +105,7 @@ public class CalcCore {
 		CalcCore calc = CalcCore.getInstance();
 		
 		CalcAction doAction;
-		if (action == CalcAction.EQUAL) {
+		if (calc.lastAction != CalcAction.NONE) {
 			doAction = calc.lastAction;
 		} else {
 			doAction = action;
@@ -110,6 +114,7 @@ public class CalcCore {
 		calc.lastValue = calc.currentValue;
 		calc.currentValue = result;
 		calc.lastAction = action;
+		calc.inputValue = 0.0;
 	
 		return CalcCore.currentOutput();	
 	}
@@ -119,8 +124,8 @@ public class CalcCore {
 	 */
 	public static String input(String value) {
 		CalcCore calc = CalcCore.getInstance();
-		String origin = Double.toString(calc.currentValue);
-		if (calc.currentValue <= 0.0) {
+		String origin = CalcCore.currentOutput();
+		if (calc.inputValue <= 0.0) {
 			origin = "";
 		} else {
 			// contiune
@@ -136,6 +141,7 @@ public class CalcCore {
 		String current = sb.toString();
 		
 		try {
+			calc.inputValue = Double.valueOf(current);
 			calc.currentValue = Double.valueOf(current);
 		} catch (Exception e) {
 			
@@ -172,6 +178,7 @@ public class CalcCore {
 	public static String clear() {
 		CalcCore calc = CalcCore.getInstance();
 		calc.currentValue = 0.0;
+		calc.inputValue = 0.0;
 		return CalcCore.currentOutput();
 	}
 	
@@ -181,6 +188,7 @@ public class CalcCore {
 	 public static String allclear() {
 		 CalcCore calc = CalcCore.getInstance();
 		 calc.currentValue = 0.0;
+		 calc.inputValue = 0.0;
 		 calc.lastValue = 0.0;
 		 calc.lastAction = CalcAction.NONE;
 		 calc.history.clear();
