@@ -66,40 +66,37 @@ public class MainActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.bt_num0:
-			et_xianshi.append("0");
-			CalcCore.input("0");
+			et_xianshi.setText(CalcCore.input("0"));
 			break;
 		case R.id.bt_num1:
-			et_xianshi.append("1");
-			CalcCore.input("1");
+			et_xianshi.setText(CalcCore.input("1"));
 			break;
 		case R.id.bt_num2:
-			et_xianshi.append("2");
-			CalcCore.input("2");
+			et_xianshi.setText(CalcCore.input("2"));
 			break;
 		case R.id.bt_num3:
-			et_xianshi.append("3");
+			et_xianshi.setText(CalcCore.input("3"));
 			break;
 		case R.id.bt_num4:
-			et_xianshi.append("4");
+			et_xianshi.setText(CalcCore.input("4"));
 			break;
 		case R.id.bt_num5:
-			et_xianshi.append("5");
+			et_xianshi.setText(CalcCore.input("5"));
 			break;
 		case R.id.bt_num6:
-			et_xianshi.append("6");
+			et_xianshi.setText(CalcCore.input("6"));
 			break;
 		case R.id.bt_num7:
-			et_xianshi.append("7");
+			et_xianshi.setText(CalcCore.input("7"));
 			break;
 		case R.id.bt_num8:
-			et_xianshi.append("8");
+			et_xianshi.setText(CalcCore.input("8"));
 			break;
 		case R.id.bt_num9:
-			et_xianshi.append("9");
+			et_xianshi.setText(CalcCore.input("9"));
 			break;
 		case R.id.bt_dian:
-			et_xianshi.append(".");
+			et_xianshi.setText(CalcCore.input("."));
 			break;
 		case R.id.bt_ac:
 			String s = et_xianshi.getText().toString();
@@ -109,179 +106,25 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 			break;
 		case R.id.bt_jia:
-			et_xianshi.append("+");
 			String ret = CalcCore.calculate(CalcAction.PLUS);
-			System.out.println("test:" + ret);
 			et_xianshi.setText(ret);
 			break;
 		case R.id.bt_jian:
-			et_xianshi.append("-");
+			String ret1 = CalcCore.calculate(CalcAction.MINUS);
+			et_xianshi.setText(ret1);
 			break;
 		case R.id.bt_cheng:
-			et_xianshi.append("×");
+			String ret2 = CalcCore.calculate(CalcAction.MULI);
+			et_xianshi.setText(ret2);
 			break;
 		case R.id.bt_chu:
-			et_xianshi.append("÷");
+			String ret3 = CalcCore.calculate(CalcAction.DIVIDE);
+			et_xianshi.setText(ret3);
 			break;
 		case R.id.bt_dengyu:
-			String s1 = et_xianshi.getText().toString();
-			boolean jia = s1.contains("+");
-			boolean jian = s1.contains("-");
-			boolean cheng = s1.contains("×");
-			boolean chu = s1.contains("÷");
-			if ("".equals(s1)) {
-				Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT).show();
-				return;
-			}
-			if (!jia && !jian && !cheng && !chu) {
-				Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT).show();
-				return;
-			}
-			if (s1.endsWith(".") || s1.endsWith("+") || s1.endsWith("-")
-					|| s1.endsWith("×") || s1.endsWith("÷")) {
-				Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT).show();
-				return;
-			}
-			if (jia) {
-				if (s1.indexOf("+") != s1.lastIndexOf("+")
-						|| s1.indexOf("+") < 1) {
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-							.show();
-					return;
-				}
-				if(jian||cheng||chu){
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-					.show();
-			return;
-				}
-				int index = s1.indexOf("+");
-				String a = s1.substring(0, index);
-				String b = s1.substring(index + 1, s1.length());
-				if(a.contains(".")){
-					if(a.indexOf(".")!=a.lastIndexOf(".")||a.indexOf(".")==a.length()-1){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-						.show();
-				return;
-					}
-				}
-				if(b.contains(".")){
-					if(b.indexOf(".")!=b.lastIndexOf(".")||b.indexOf(".")==0){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-						.show();
-				return;
-					}
-				}
-				double x = Double.parseDouble(a);
-				double y = Double.parseDouble(b);
-				String s2 = String.valueOf(x + y);
-				et_xianshi.setText(s2);
-			} else if (jian) {
-				if (s1.indexOf("-") != s1.lastIndexOf("-")
-						|| s1.indexOf("-") < 1) {
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-							.show();
-					return;
-				}
-				if(jia||cheng||chu){
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-					.show();
-			return;
-				}
-				int index = s1.indexOf("-");
-				String a = s1.substring(0, index);
-				String b = s1.substring(index + 1, s1.length());
-				if(a.contains(".")){
-					if(a.indexOf(".")!=a.lastIndexOf(".")||a.indexOf(".")==a.length()-1){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-						.show();
-				return;
-					}
-				}
-				if(b.contains(".")){
-					if(b.indexOf(".")!=b.lastIndexOf(".")||b.indexOf(".")==0){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-						.show();
-				return;
-					}
-				}
-				double x = Double.parseDouble(a);
-				double y = Double.parseDouble(b);
-				String s2 = String.valueOf(x - y);
-				et_xianshi.setText(s2);
-
-			}else if (cheng) {
-				if (s1.indexOf("×") != s1.lastIndexOf("×")
-						|| s1.indexOf("×") < 1) {
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-							.show();
-					return;
-				}
-				if(jia||jian||chu){
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-					.show();
-			return;
-				}
-				int index = s1.indexOf("×");
-				String a = s1.substring(0, index);
-				String b = s1.substring(index + 1, s1.length());
-				if(a.contains(".")){
-					if(a.indexOf(".")!=a.lastIndexOf(".")||a.indexOf(".")==a.length()-1){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-						.show();
-				return;
-					}
-				}
-				if(b.contains(".")){
-					if(b.indexOf(".")!=b.lastIndexOf(".")||b.indexOf(".")==0){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-						.show();
-				return;
-					}
-				}
-				double x = Double.parseDouble(a);
-				double y = Double.parseDouble(b);
-				String s2 = String.valueOf(x * y);
-				et_xianshi.setText(s2);
-
-			}else if (chu) {
-				if (s1.indexOf("÷") != s1.lastIndexOf("÷")
-						|| s1.indexOf("÷") < 1) {
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-							.show();
-					return;
-				}
-				if(jia||jian||cheng){
-					Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-					.show();
-			return;
-				}
-				int index = s1.indexOf("÷");
-				String a = s1.substring(0, index);
-				String b = s1.substring(index + 1, s1.length());
-				if(a.contains(".")){
-					if(a.indexOf(".")!=a.lastIndexOf(".")||a.indexOf(".")==a.length()-1){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-						.show();
-				return;
-					}
-				}
-				if(b.contains(".")){
-					if(b.indexOf(".")!=b.lastIndexOf(".")||b.indexOf(".")==0){
-						Toast.makeText(this, "你输入的运算格式有误", Toast.LENGTH_SHORT)
-						.show();
-				return;
-					}
-					
-				}
-				double x = Double.parseDouble(a);
-				double y = Double.parseDouble(b);
-				String s2 = String.valueOf(x / y);
-				et_xianshi.setText(s2);
-
-			}
-	
+			String ret4 = CalcCore.calculate(CalcAction.EQUAL);
+			et_xianshi.setText(ret4);
 			break;
-
 		default:
 			break;
 		}
