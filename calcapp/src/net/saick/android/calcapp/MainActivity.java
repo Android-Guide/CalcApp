@@ -7,20 +7,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import net.saick.android.calcapp.R;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	private EditText et_xianshi;
+	private TextView et_xianshi;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		EditText edit = (EditText) findViewById(R.id.et_xianshi);
-		edit.setInputType(InputType.TYPE_NULL);
-		et_xianshi = (EditText) findViewById(R.id.et_xianshi);
+	//	EditText edit = (EditText) findViewById(R.id.et_xianshi);
+	//	edit.setInputType(InputType.TYPE_NULL);
+		et_xianshi = (TextView) findViewById(R.id.tv_jisuan);
 		Button bt_num0 = (Button) findViewById(R.id.bt_num0);
 		Button bt_num1 = (Button) findViewById(R.id.bt_num1);
 		Button bt_num2 = (Button) findViewById(R.id.bt_num2);
@@ -36,7 +37,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		Button bt_jian = (Button) findViewById(R.id.bt_jian);
 		Button bt_cheng = (Button) findViewById(R.id.bt_cheng);
 		Button bt_chu = (Button) findViewById(R.id.bt_chu);
-		Button bt_shanchu = (Button) findViewById(R.id.bt_shanchu);
+		Button bt_ac = (Button) findViewById(R.id.bt_ac);
 		Button bt_dengyu = (Button) findViewById(R.id.bt_dengyu);
 		bt_num0.setOnClickListener(this);
 		bt_num1.setOnClickListener(this);
@@ -49,7 +50,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		bt_num8.setOnClickListener(this);
 		bt_num9.setOnClickListener(this);
 		bt_dian.setOnClickListener(this);
-		bt_shanchu.setOnClickListener(this);
+		bt_ac.setOnClickListener(this);
 		bt_jia.setOnClickListener(this);
 		bt_jian.setOnClickListener(this);
 		bt_cheng.setOnClickListener(this);
@@ -95,7 +96,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.bt_dian:
 			et_xianshi.append(".");
 			break;
-		case R.id.bt_shanchu:
+		case R.id.bt_ac:
 			String s = et_xianshi.getText().toString();
 			if (!"".equals(s)) {
 				s = s.substring(0, s.length() - 1);
