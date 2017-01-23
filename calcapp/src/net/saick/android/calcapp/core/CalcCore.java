@@ -105,7 +105,7 @@ public class CalcCore {
 		CalcCore calc = CalcCore.getInstance();
 		
 		CalcAction doAction;
-		if (calc.lastAction != CalcAction.NONE) {
+		if (calc.lastAction != CalcAction.NONE || calc.lastValue == 0.0) {
 			doAction = calc.lastAction;
 		} else {
 			doAction = action;
@@ -116,7 +116,7 @@ public class CalcCore {
 		calc.lastAction = action;
 		calc.inputValue = 0.0;
 	
-		return CalcCore.currentOutput();	
+		return CalcCore.currentOutput();
 	}
 	
 	/**
@@ -163,7 +163,7 @@ public class CalcCore {
 	 * 判断当前是否需要删除，如果不需要的话，显示 AC
 	 * @return 是否需要删除
 	 */
-	public static Boolean isNeedDelete() {
+	public static boolean isNeedDelete() {
 		CalcCore calc = CalcCore.getInstance();
 		if (calc.currentValue != 0.0) {
 			return true;
@@ -191,7 +191,7 @@ public class CalcCore {
 		 calc.inputValue = 0.0;
 		 calc.lastValue = 0.0;
 		 calc.lastAction = CalcAction.NONE;
-		 calc.history.clear();
+//		 calc.history.clear();
 		 return CalcCore.currentOutput();
 	 }
 }

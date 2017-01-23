@@ -99,11 +99,14 @@ public class MainActivity extends Activity implements OnClickListener {
 			et_xianshi.setText(CalcCore.input("."));
 			break;
 		case R.id.bt_ac:
-			String s = et_xianshi.getText().toString();
-			if (!"".equals(s)) {
-				s = s.substring(0, s.length() - 1);
-				et_xianshi.setText(s);
+		{
+			boolean isNeedDelete = CalcCore.isNeedDelete();
+			if (isNeedDelete) {
+				et_xianshi.setText(CalcCore.clear());
+			} else {
+				et_xianshi.setText(CalcCore.allclear());
 			}
+		}
 			break;
 		case R.id.bt_jia:
 			String ret = CalcCore.calculate(CalcAction.PLUS);
@@ -127,6 +130,14 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		default:
 			break;
+		}
+		
+		boolean isNeedDelete = CalcCore.isNeedDelete();
+		Button bt_ac = (Button)findViewById(R.id.bt_ac);
+		if (isNeedDelete) {
+			bt_ac.setText("C");
+		} else {
+			bt_ac.setText("AC");
 		}
 	}
 
