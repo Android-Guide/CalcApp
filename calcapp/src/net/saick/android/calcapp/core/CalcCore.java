@@ -49,7 +49,9 @@ public class CalcCore {
 	 */
 	private double calculateWithTwoValue(double v1, double v2, CalcAction action) {
 		double result = v2;
-		
+		if(v2==0.0){
+			return v1;
+		}else{
 		switch (action) {
 		case DIVIDE:
 			result = v1 / v2;
@@ -85,6 +87,7 @@ public class CalcCore {
 		}
 		
 		return result;
+		}
 	}
 
 	
@@ -111,12 +114,14 @@ public class CalcCore {
 			doAction = action;
 		}
 		double result = calc.calculateWithTwoValue(calc.lastValue, calc.currentValue, doAction);
-		calc.lastValue = calc.currentValue;
-		calc.currentValue = result;
+		//calc.lastValue = calc.currentValue;
+		calc.lastValue = result;
+		//calc.currentValue = result;
+		calc.currentValue = 0.0;
 		calc.lastAction = action;
 		calc.inputValue = 0.0;
 	
-		return CalcCore.currentOutput();
+		return CalcCore.currentOutput(result);
 	}
 	
 	/**
@@ -124,7 +129,7 @@ public class CalcCore {
 	 */
 	public static String input(String value) {
 		CalcCore calc = CalcCore.getInstance();
-		String origin = CalcCore.currentOutput();
+		String origin=null;// = CalcCore.currentOutput();
 		if (calc.inputValue <= 0.0) {
 			origin = "";
 		} else {
@@ -133,11 +138,11 @@ public class CalcCore {
 		StringBuffer sb = new StringBuffer();
 		sb.append(origin);
 		value = Double.toString(Double.valueOf(value));
-		if (Double.valueOf(value) <= 0.0) {
+		//if (Double.valueOf(value) <= 0.0) {
 			// continue
-		} else {
+		//} else {
 			sb.append(value);
-		}
+		//}
 		String current = sb.toString();
 		
 		try {
@@ -148,15 +153,16 @@ public class CalcCore {
 		} finally {
 			
 		}
-		return CalcCore.currentOutput();
+		return CalcCore.currentOutput(calc.inputValue);
 	}
 	
 	/**
 	 * @return 可显示的当前值
 	 */
-	public static String currentOutput() {
+	public static String currentOutput(double d) {
 		DecimalFormat decimalFormat = new DecimalFormat("###################.###########"); 
-		return decimalFormat.format(CalcCore.getInstance().currentValue);
+		//return decimalFormat.format(CalcCore.getInstance().currentValue);
+		return decimalFormat.format(d);
 	}
 	
 	/**
@@ -179,7 +185,7 @@ public class CalcCore {
 		CalcCore calc = CalcCore.getInstance();
 		calc.currentValue = 0.0;
 		calc.inputValue = 0.0;
-		return CalcCore.currentOutput();
+		return CalcCore.currentOutput(calc.currentValue);
 	}
 	
 	/**
@@ -192,6 +198,6 @@ public class CalcCore {
 		 calc.lastValue = 0.0;
 		 calc.lastAction = CalcAction.NONE;
 //		 calc.history.clear();
-		 return CalcCore.currentOutput();
+		 return CalcCore.currentOutput(calc.currentValue);
 	 }
 }
