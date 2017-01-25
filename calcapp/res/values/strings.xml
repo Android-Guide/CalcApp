@@ -24,5 +24,7 @@
     
     <string name="bt_dian">.</string>
     <string name="bt_dengyu">＝</string>
+    
+    <string name="default_value">0</string>
 
 </resources>
