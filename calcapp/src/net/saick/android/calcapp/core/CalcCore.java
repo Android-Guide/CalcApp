@@ -129,7 +129,7 @@ public class CalcCore {
 	 */
 	public static String input(String value) {
 		CalcCore calc = CalcCore.getInstance();
-		String origin=null;// = CalcCore.currentOutput();
+		String origin = CalcCore.currentOutput(calc.inputValue);
 		if (calc.inputValue <= 0.0) {
 			origin = "";
 		} else {
