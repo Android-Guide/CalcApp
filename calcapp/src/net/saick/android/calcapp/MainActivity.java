@@ -2,13 +2,17 @@ package net.saick.android.calcapp;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.InputType;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+//import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import net.saick.android.calcapp.R;
 import net.saick.android.calcapp.core.CalcAction;
 import net.saick.android.calcapp.core.CalcCore;
@@ -16,6 +20,34 @@ import net.saick.android.calcapp.core.CalcCore;
 public class MainActivity extends Activity implements OnClickListener {
 
 	private TextView et_xianshi;
+	
+	@Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+            ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.ret_copy, menu);
+    }
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// AdapterContextMenuInfo info =
+		// (AdapterContextMenuInfo)item.getMenuInfo();
+
+		switch (item.getItemId()) {
+		case R.id.action_copy:
+			String current = (String) et_xianshi.getText();
+			current = current.replace(",", "");
+
+			Log.e("shjborage", "you have click copy current value :" + current);
+			ClipboardManager sysClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+			ClipData myClip = ClipData.newPlainText("text", current);
+			sysClipboard.setPrimaryClip(myClip);
+			
+			return true;
+		}
+
+		return super.onContextItemSelected(item);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +56,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	//	EditText edit = (EditText) findViewById(R.id.et_xianshi);
 	//	edit.setInputType(InputType.TYPE_NULL);
 		et_xianshi = (TextView) findViewById(R.id.tv_jisuan);
+        registerForContextMenu(et_xianshi);
+		
 		Button bt_num0 = (Button) findViewById(R.id.bt_num0);
 		Button bt_num1 = (Button) findViewById(R.id.bt_num1);
 		Button bt_num2 = (Button) findViewById(R.id.bt_num2);
