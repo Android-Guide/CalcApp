@@ -1,5 +1,7 @@
 package net.saick.android.calcapp;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ClipData;
@@ -20,6 +22,7 @@ import net.saick.android.calcapp.core.CalcCore;
 public class MainActivity extends Activity implements OnClickListener {
 
 	private TextView et_xianshi;
+	private SoundPool soundPool;
 	
 	@Override
     public void onCreateContextMenu(ContextMenu menu, View v,
@@ -52,6 +55,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		this.loadSounds();
+		
 		setContentView(R.layout.activity_main);
 	//	EditText edit = (EditText) findViewById(R.id.et_xianshi);
 	//	edit.setInputType(InputType.TYPE_NULL);
@@ -75,6 +81,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		Button bt_chu = (Button) findViewById(R.id.bt_chu);
 		Button bt_ac = (Button) findViewById(R.id.bt_ac);
 		Button bt_dengyu = (Button) findViewById(R.id.bt_dengyu);
+		Button bt_zf = (Button) findViewById(R.id.bt_zf);
+		Button bt_bfh = (Button) findViewById(R.id.bt_bfh);
+		
 		bt_num0.setOnClickListener(this);
 		bt_num1.setOnClickListener(this);
 		bt_num2.setOnClickListener(this);
@@ -92,12 +101,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		bt_cheng.setOnClickListener(this);
 		bt_chu.setOnClickListener(this);
 		bt_dengyu.setOnClickListener(this);
-
+		bt_zf.setOnClickListener(this);
+		bt_bfh.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		// 播放音效
+		soundPool.play(1, 1, 1, 0, 0, 1);
+		
 		switch (v.getId()) {
 		case R.id.bt_num0:
 			et_xianshi.setText(CalcCore.input("0"));
@@ -162,6 +174,14 @@ public class MainActivity extends Activity implements OnClickListener {
 			String ret4 = CalcCore.calculate(CalcAction.EQUAL);
 			et_xianshi.setText(ret4);
 			break;
+		case R.id.bt_zf:
+			String ret5 = CalcCore.calculate(CalcAction.PLUSMINUS);
+			et_xianshi.setText(ret5);
+			break;
+		case R.id.bt_bfh:
+			String ret6 = CalcCore.calculate(CalcAction.PERSENT);
+			et_xianshi.setText(ret6);
+			break;
 		default:
 			break;
 		}
@@ -173,6 +193,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else {
 			bt_ac.setText("AC");
 		}
+	}
+	
+	private void loadSounds() {
+ 		soundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM,5);
+ 		soundPool.load(this, R.raw.dada, 1);
 	}
 
 }
