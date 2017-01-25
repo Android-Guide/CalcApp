@@ -4,7 +4,7 @@
 package net.saick.android.calcapp.core;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 //enum CalcAction {
 //	NONE,		// 无-未更新
@@ -38,7 +38,7 @@ public class CalcCore {
 	// 当前操作
 	private CalcAction lastAction = CalcAction.NONE;
 	// TODO: 用来记录操作记录
-	private ArrayList history;
+//	private ArrayList history;
 	
 	/**
 	 * 根据操作计算两个数的结果，如果操作不可计算，返回第二个数

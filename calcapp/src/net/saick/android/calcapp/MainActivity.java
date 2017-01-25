@@ -1,15 +1,22 @@
 package net.saick.android.calcapp;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.InputType;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+//import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
-import android.widget.EditText;
+//import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import net.saick.android.calcapp.R;
 import net.saick.android.calcapp.core.CalcAction;
 import net.saick.android.calcapp.core.CalcCore;
@@ -34,14 +41,51 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button bt_cheng;
 	private Button bt_chu;
 	private Button bt_bfh;
+	private Button bt_dengyu;
+	private Button bt_zf;
+	
+	private SoundPool soundPool;
+	
+	@Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+            ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.ret_copy, menu);
+    }
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// AdapterContextMenuInfo info =
+		// (AdapterContextMenuInfo)item.getMenuInfo();
+
+		switch (item.getItemId()) {
+		case R.id.action_copy:
+			String current = (String) et_xianshi.getText();
+			current = current.replace(",", "");
+
+			Log.e("shjborage", "you have click copy current value :" + current);
+			ClipboardManager sysClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+			ClipData myClip = ClipData.newPlainText("text", current);
+			sysClipboard.setPrimaryClip(myClip);
+			
+			return true;
+		}
+
+		return super.onContextItemSelected(item);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		this.loadSounds();
+		
 		setContentView(R.layout.activity_main);
 	//	EditText edit = (EditText) findViewById(R.id.et_xianshi);
 	//	edit.setInputType(InputType.TYPE_NULL);
 		et_xianshi = (TextView) findViewById(R.id.tv_jisuan);
+		registerForContextMenu(et_xianshi);
+		
 		bt_num0 = (Button) findViewById(R.id.bt_num0);
 		bt_num1 = (Button) findViewById(R.id.bt_num1);
 		bt_num2 = (Button) findViewById(R.id.bt_num2);
@@ -59,7 +103,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		bt_chu = (Button) findViewById(R.id.bt_chu);
 		bt_ac = (Button) findViewById(R.id.bt_ac);
 		bt_bfh = (Button) findViewById(R.id.bt_bfh);
-		Button bt_dengyu = (Button) findViewById(R.id.bt_dengyu);
+		bt_zf = (Button) findViewById(R.id.bt_zf);
+		bt_dengyu = (Button) findViewById(R.id.bt_dengyu);
+		
 		bt_num0.setOnClickListener(this);
 		bt_num1.setOnClickListener(this);
 		bt_num2.setOnClickListener(this);
@@ -77,12 +123,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		bt_cheng.setOnClickListener(this);
 		bt_chu.setOnClickListener(this);
 		bt_dengyu.setOnClickListener(this);
-
+		bt_zf.setOnClickListener(this);
+		bt_bfh.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		// 播放音效
+		soundPool.play(1, 1, 1, 0, 0, 1);
+		
 		switch (v.getId()) {
 		case R.id.bt_num0:
 			et_xianshi.setText(CalcCore.input("0"));
@@ -275,6 +324,14 @@ public class MainActivity extends Activity implements OnClickListener {
 			String ret4 = CalcCore.calculate(CalcAction.EQUAL);
 			et_xianshi.setText(ret4);
 			break;
+		case R.id.bt_zf:
+			String ret5 = CalcCore.calculate(CalcAction.PLUSMINUS);
+			et_xianshi.setText(ret5);
+			break;
+		case R.id.bt_bfh:
+			String ret6 = CalcCore.calculate(CalcAction.PERSENT);
+			et_xianshi.setText(ret6);
+			break;
 		default:
 			break;
 		}
@@ -286,6 +343,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else {
 			bt_ac.setText("AC");
 		}
+	}
+	
+	private void loadSounds() {
+ 		soundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM,5);
+ 		soundPool.load(this, R.raw.dada, 1);
 	}
 
 }
@@ -313,5 +375,5 @@ class XuanZhong{
 			layoutParams.setMargins(0,0,1,0);
 			bt.setLayoutParams(layoutParams);
 		}
-	}
+		}
 

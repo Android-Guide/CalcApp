@@ -26,5 +26,8 @@
     <string name="bt_dengyu">＝</string>
     
     <string name="default_value">0</string>
+    
+    <string name="action_copy">拷贝</string>
+    
 
 </resources>
