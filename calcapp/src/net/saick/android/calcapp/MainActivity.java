@@ -325,8 +325,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			et_xianshi.setText(ret4);
 			break;
 		case R.id.bt_zf:
-			String ret5 = CalcCore.calculate(CalcAction.PLUSMINUS);
+			//String ret5 = CalcCore.calculate(CalcAction.PLUSMINUS);
+			String ret5=CalcCore.zf();
+			if(ret5!=null){
 			et_xianshi.setText(ret5);
+			}else{
+				return;
+			}
 			break;
 		case R.id.bt_bfh:
 			String ret6 = CalcCore.calculate(CalcAction.PERSENT);
@@ -355,24 +360,24 @@ class XuanZhong{
 
 		public static void xz(Button bt){
 			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bt.getLayoutParams();
-			layoutParams.setMargins(0,1,0,1);
+			layoutParams.setMargins(0,6,0,6);
 			bt.setLayoutParams(layoutParams);
 
 		}
 		public static void noxz(Button bt){
 			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bt.getLayoutParams();
-			layoutParams.setMargins(0,0,0,0);
+			layoutParams.setMargins(0,0,4,0);
 			bt.setLayoutParams(layoutParams);
 		
 		}
 		public static void left(Button bt){
 			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bt.getLayoutParams();
-			layoutParams.setMargins(0,0,2,0);
+			layoutParams.setMargins(0,0,6,0);
 			bt.setLayoutParams(layoutParams);
 		}
 		public static void no_left(Button bt){
 			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bt.getLayoutParams();
-			layoutParams.setMargins(0,0,1,0);
+			layoutParams.setMargins(0,0,2,0);
 			bt.setLayoutParams(layoutParams);
 		}
 		}

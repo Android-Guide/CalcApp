@@ -28,7 +28,8 @@ public class CalcCore {
 	private static class CalcSingletonHolder {
 		private final static CalcCore instance = new CalcCore();
 	}
-	
+	private boolean chushi=true;
+	private boolean b2=false;
 	// 计算前的值
 	private double lastValue = 0.0;
 	// 输入编辑值
@@ -49,7 +50,8 @@ public class CalcCore {
 	 */
 	private double calculateWithTwoValue(double v1, double v2, CalcAction action) {
 		double result = v2;
-		if(v2==0.0){
+		CalcCore calc=CalcCore.getInstance();
+		if(!calc.b2){
 			return v1;
 		}else{
 		switch (action) {
@@ -67,6 +69,7 @@ public class CalcCore {
 			break;
 		case NONE:
 			result = v2;
+			calc.chushi=false;
 			break;
 		case PERSENT:
 			result = v2 * 0.01;
@@ -108,7 +111,7 @@ public class CalcCore {
 		CalcCore calc = CalcCore.getInstance();
 		
 		CalcAction doAction;
-		if (calc.lastAction != CalcAction.NONE || calc.lastValue == 0.0) {
+		if (calc.lastAction != CalcAction.NONE || calc.chushi) {
 			doAction = calc.lastAction;
 		} else {
 			doAction = action;
@@ -117,6 +120,7 @@ public class CalcCore {
 		//calc.lastValue = calc.currentValue;
 		calc.lastValue = result;
 		//calc.currentValue = result;
+		calc.b2=false;
 		calc.currentValue = 0.0;
 		calc.lastAction = action;
 		calc.inputValue = 0.0;
@@ -148,6 +152,7 @@ public class CalcCore {
 		try {
 			calc.inputValue = Double.valueOf(current);
 			calc.currentValue = Double.valueOf(current);
+			calc.b2=true;
 		} catch (Exception e) {
 			
 		} finally {
@@ -185,6 +190,7 @@ public class CalcCore {
 		CalcCore calc = CalcCore.getInstance();
 		calc.currentValue = 0.0;
 		calc.inputValue = 0.0;
+		calc.b2=false;
 		return CalcCore.currentOutput(calc.currentValue);
 	}
 	
@@ -198,6 +204,28 @@ public class CalcCore {
 		 calc.lastValue = 0.0;
 		 calc.lastAction = CalcAction.NONE;
 //		 calc.history.clear();
+		 calc.chushi=true;
 		 return CalcCore.currentOutput(calc.currentValue);
 	 }
+	 public static String zf(){
+		 CalcCore calc = CalcCore.getInstance();
+		 
+		 if(calc.b2==false&&calc.chushi==false){
+			 calc.lastValue=0-calc.lastValue;
+			 String s=calc.currentOutput(calc.lastValue);
+			 return s;
+		 }else if(calc.b2==true&&calc.chushi==false){
+			 calc.currentValue=calc.currentValue*-1;
+			 String s1=calc.currentOutput(calc.currentValue);
+			 return s1; 
+		 }else if(calc.chushi==true&&calc.inputValue!=0){
+			 calc.currentValue=calc.currentValue*-1;
+			 String s2=calc.currentOutput(calc.currentValue);
+			 return s2;
+		 }
+		 
+		return null;
+		
+	 }
+
 }
