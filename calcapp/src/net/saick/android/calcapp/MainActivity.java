@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			String current = (String) et_xianshi.getText();
 			current = current.replace(",", "");
 
-			Log.e("shjborage", "you have click copy current value :" + current);
+			Log.e("saick", "you have click copy current value :" + current);
 			ClipboardManager sysClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
 			ClipData myClip = ClipData.newPlainText("text", current);
 			sysClipboard.setPrimaryClip(myClip);
@@ -351,29 +351,36 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 }
-class XuanZhong{
 
-		public static void xz(Button bt){
-			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bt.getLayoutParams();
-			layoutParams.setMargins(0,1,0,1);
-			bt.setLayoutParams(layoutParams);
+class XuanZhong {
 
-		}
-		public static void noxz(Button bt){
-			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bt.getLayoutParams();
-			layoutParams.setMargins(0,0,0,0);
-			bt.setLayoutParams(layoutParams);
-		
-		}
-		public static void left(Button bt){
-			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bt.getLayoutParams();
-			layoutParams.setMargins(0,0,2,0);
-			bt.setLayoutParams(layoutParams);
-		}
-		public static void no_left(Button bt){
-			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bt.getLayoutParams();
-			layoutParams.setMargins(0,0,1,0);
-			bt.setLayoutParams(layoutParams);
-		}
-		}
+	public static void xz(Button bt) {
+		LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) bt
+				.getLayoutParams();
+		layoutParams.setMargins(0, 1, 0, 1);
+		bt.setLayoutParams(layoutParams);
 
+	}
+
+	public static void noxz(Button bt) {
+		LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) bt
+				.getLayoutParams();
+		layoutParams.setMargins(0, 0, 0, 0);
+		bt.setLayoutParams(layoutParams);
+
+	}
+
+	public static void left(Button bt) {
+		LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) bt
+				.getLayoutParams();
+		layoutParams.setMargins(0, 0, 2, 0);
+		bt.setLayoutParams(layoutParams);
+	}
+
+	public static void no_left(Button bt) {
+		LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) bt
+				.getLayoutParams();
+		layoutParams.setMargins(0, 0, 1, 0);
+		bt.setLayoutParams(layoutParams);
+	}
+}
